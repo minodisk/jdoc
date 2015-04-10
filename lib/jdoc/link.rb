@@ -24,6 +24,13 @@ module Jdoc
       "#{path} #{method_order_score}"
     end
 
+    # @return [String] Title for this endpoint, defined in title property
+    # @example
+    #   link.title #=> "List"
+    def title
+      @raw_link.title
+    end
+
     # @return [String] Description for this endpoint, defined in description property
     # @example
     #   link.description #=> "List existing apps."
