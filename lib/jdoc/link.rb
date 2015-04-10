@@ -281,7 +281,9 @@ module Jdoc
             when value.type.include?("null")
               nil
             when value.type.include?("array")
-              if example = value.items.data["example"]
+              if value.items.nil?
+                []
+              elsif example = value.items.data["example"]
                 [example]
               else
                 [call(value.items.properties)]
