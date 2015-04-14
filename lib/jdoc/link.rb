@@ -150,6 +150,19 @@ module Jdoc
       end
     end
 
+    # @return [Array<Jdoc::Property>] Properties defined in this link's target schema property.
+    def response_properties
+      @response_properties ||= begin
+        if response_schema
+          response_schema.properties.map do |name, schema|
+            Property.new(name: name, schema: schema)
+          end
+        else
+          []
+        end
+      end
+    end
+
     # @return [true, false] True if this endpoint must have request body
     def has_request_body?
       ["PATCH", "POST", "PUT"].include?(method) && !request_parameters.empty?
